@@ -20,8 +20,16 @@ public class AmStramGram {
   public static int winnerAmStramGram(int n, int k) {
     List     l = new List();
     ListItr li = new ListItr(l);
-    int      i;
-
+    for(int i=1;i<=k;i++)
+    {
+      li.insertAfter(i);
+    }
+    while(k>0)
+    {
+      
+      
+      k--;
+    }
     // TODO - A COMPLETER !
     // ...                                 // build '-/-1-2-3-4-...-n-'
     // while(...) {                        // while size>1
