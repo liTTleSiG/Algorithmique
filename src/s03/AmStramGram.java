@@ -24,20 +24,25 @@ public class AmStramGram {
     {
       li.insertAfter(i);
     }
-    while(k>0)
+    int saveValue=0;
+    while(l.isEmpty()==false)
     {
-      
-      
-      k--;
+      int i=k;
+      while(i>0)
+      {
+        if (li.isLast())
+        {
+          li.pred = null;
+          li.succ = l.first;
+        }
+        else
+          li.goToNext();
+        i--;
+      }
+      li.removeAfter();
+      saveValue=li.pred.elt;
     }
-    // TODO - A COMPLETER !
-    // ...                                 // build '-/-1-2-3-4-...-n-'
-    // while(...) {                        // while size>1
-    //   ...                               //   advance k times
-    //   ...                               //   then remove an element
-    // }
-    // return ...                          // return the last one
-    return 0; 
+    return saveValue; 
   }
   // ----------------------------------------------------------  
 }
