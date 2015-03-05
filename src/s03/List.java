@@ -3,9 +3,8 @@ package s03;
 public class List {
   ListNode first, last;
   int      size;
+  int      numItr=0;
 
-  // TODO - A COMPLETER...
-  // --------------------
   public List() {
     first = null;
     last = null;

@@ -6,54 +6,61 @@ public class ListItr {
 
   // ----------------------------------------------------------
   public ListItr(List anyList) {
-    list = anyList;
+    this.list = anyList;
     goToFirst();
+    this.list.numItr++;
   }
 
   // ----------------------------------------------------------
   public void insertAfter(int e) {
-    ListNode aux = new ListNode(e, pred, succ);
-    if (list.isEmpty()) {
-      // List vide
-      pred = null;
-      succ = aux;
-      list.first = aux;
-      list.last = aux;
-    } else if (this.isFirst()) {
-      // Ajouter un élément au début
-      succ.prev = aux;
-      succ = aux;
-      pred = null;
-      list.first = aux;
-    } else if (this.isLast()) {
-      // Ajouter un élément à la fin
-      pred.next = aux;
-      pred = aux;
-      succ = null;
-      list.last = aux;
-    } else {
-      // Ajouter un élément au milieu
-      succ.prev = aux;
-      pred.next = aux;
-      succ = aux;
+    if (this.list.numItr < 2) {
+      ListNode aux = new ListNode(e, pred, succ);
+      if (list.isEmpty()) {
+        // List vide
+        pred = null;
+        succ = aux;
+        succ.prev=null;
+        succ.next=null;
+        list.first = aux;
+        list.last = aux;
+      } else if (this.isFirst()) {
+        // Ajouter un élément au début
+        succ.prev = aux;
+        succ = aux;
+        pred = null;
+        list.first = aux;
+      } else if (this.isLast()) {
+        // Ajouter un élément à la fin
+        pred.next = aux;
+        pred = aux;
+        succ = null;
+        list.last = aux;
+      } else {
+        // Ajouter un élément au milieu
+        succ.prev = aux;
+        pred.next = aux;
+        succ = aux;
+      }
+      // Incrémenter la taille de la liste
+      list.size++;
     }
-    // Incrémenter la taille de la liste
-    list.size++;
   }
 
   public void removeAfter() {
-    if (list.isEmpty()) {
-      // Liste vide
-      System.out.println("La liste est vide");
-    } else if (this.isFirst()) {
-      // Supprime le premier élément
-      succ = null;
-    } else if (this.isLast()) {
-      // Supprime le premier élément
-      System.out.println("Impossible, il s'agit du dernier élément");
-    } else {
-      succ = succ.next;
-      pred.next = succ;
+    if (this.list.numItr < 2) {
+      if (list.isEmpty()) {
+        // Liste vide
+        System.out.println("La liste est vide");
+      } else if (this.isFirst()) {
+        // Supprime le premier élément
+        succ = null;
+      } else if (this.isLast()) {
+        // Supprime le premier élément
+        System.out.println("Impossible, il s'agit du dernier élément");
+      } else {
+        succ = succ.next;
+        pred.next = succ;
+      }
     }
   }
 
@@ -102,10 +109,10 @@ public class ListItr {
   }
 }
 
-// When isFirst(), it is forbidden to call goToPrev() 
+// When isFirst(), it is forbidden to call goToPrev()
 // When isLast(), it is forbidden to call goToNext()
 // When isLast(), it is forbidden to call consultAfter(), or removeAfter()
-//----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // For an empty list, isLast()==isFirst()==true
 // For a fresh ListItr, isFirst()==true
 // Using multiple iterators on the same list is allowed only
