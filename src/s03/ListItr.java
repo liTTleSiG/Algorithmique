@@ -56,25 +56,31 @@ public class ListItr {
       if (list.isEmpty()) {
         // Liste vide
         System.out.println("La liste est vide");
-      } else if (this.isFirst()) {
+      } 
+      else if(succ.next==null&&pred==null) {
+        succ = null;
+        list.size--;
+      }
+      else if(succ.next==null&&pred!=null) {
+        succ = null;
+        pred.next = null;
+        list.size--;
+      }
+      else if (this.isFirst()) {
         // Supprime le premier élément
         succ = succ.next;
-        succ.prev = null;
         list.first = succ;
+        succ.prev = null;
         list.size--;
-      } else if (this.isLast()) {
-        // Si il n'y a pas de list node après
-        System.out.println("Impossible, il s'agit du dernier élément");
-      } else if (succ.next == null) {
+      }
+      else if (this.isLast()) {
         // Supprime le dernier élément
+        System.out.println("Impossible, il s'agit du dernier élément");
+      } 
+      else{
         succ = succ.next;
         pred.next = succ;
-        list.size--;
-      } else {
-        // Cas du milieu
-        succ = succ.next;
-        pred.next = succ;
-        succ.prev = pred;
+        succ.prev=pred;
         list.size--;
       }
     }

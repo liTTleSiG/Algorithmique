@@ -23,24 +23,24 @@ public class AmStramGram {
     for(int i=1;i<=n;i++)
     {
       li.insertAfter(i);
+      li.goToNext();
     }
+    li.goToFirst();
     int saveValue=0;
     while(l.isEmpty()==false)
     {
       int i=k;
       while(i>0)
       {
-        if (li.isLast())
+        li.goToNext();
+        if(li.isLast())
         {
-          li.pred = null;
-          li.succ = l.first;
+          li.goToFirst();
         }
-        else
-          li.goToNext();
         i--;
       }
       li.removeAfter();
-      saveValue=li.pred.elt;
+      saveValue=li.consultAfter();
     }
     return saveValue; 
   }
