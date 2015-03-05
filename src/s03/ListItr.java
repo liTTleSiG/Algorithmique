@@ -19,26 +19,31 @@ public class ListItr {
         // List vide
         pred = null;
         succ = aux;
-        succ.prev=null;
-        succ.next=null;
+        succ.prev = null;
+        succ.next = null;
         list.first = aux;
         list.last = aux;
       } else if (this.isFirst()) {
         // Ajouter un élément au début
         succ.prev = aux;
+        aux.next = succ;
         succ = aux;
+        succ.prev = null;
         pred = null;
         list.first = aux;
       } else if (this.isLast()) {
         // Ajouter un élément à la fin
         pred.next = aux;
-        pred = aux;
-        succ = null;
+        succ = aux;
+        succ.next = null;
+        succ.prev = pred;
         list.last = aux;
       } else {
         // Ajouter un élément au milieu
         succ.prev = aux;
         pred.next = aux;
+        aux.prev = pred;
+        aux.next = succ;
         succ = aux;
       }
       // Incrémenter la taille de la liste
@@ -53,13 +58,17 @@ public class ListItr {
         System.out.println("La liste est vide");
       } else if (this.isFirst()) {
         // Supprime le premier élément
-        succ = null;
-      } else if (this.isLast()) {
-        // Supprime le premier élément
+        succ = succ.next;
+        succ.prev = null;
+        list.first = succ;
+      }
+      else if (this.isLast()) {
+        // Supprime le dernier élément
         System.out.println("Impossible, il s'agit du dernier élément");
       } else {
         succ = succ.next;
         pred.next = succ;
+        succ.prev = pred;
       }
     }
   }
