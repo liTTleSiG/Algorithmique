@@ -61,6 +61,7 @@ public class ListItr {
         succ = succ.next;
         succ.prev = null;
         list.first = succ;
+        list.size--;
       }
       else if (this.isLast()) {
         // Supprime le dernier élément
@@ -68,8 +69,8 @@ public class ListItr {
       } else {
         succ = succ.next;
         pred.next = succ;
-        succ.prev = pred;
-      }
+        list.size--;
+      }      
     }
   }
 
