@@ -17,7 +17,6 @@ public class ListItr {
       ListNode aux = new ListNode(e, pred, succ);
       if (list.isEmpty()) {
         // List vide
-        pred = null;
         succ = aux;
         succ.prev = null;
         succ.next = null;
@@ -29,12 +28,11 @@ public class ListItr {
         aux.next = succ;
         succ = aux;
         succ.prev = null;
-        pred = null;
         list.first = aux;
       } else if (this.isLast()) {
         // Ajouter un élément à la fin
-        pred.next = aux;
         succ = aux;
+        pred.next=succ;
         succ.next = null;
         succ.prev = pred;
         list.last = aux;
@@ -58,12 +56,17 @@ public class ListItr {
         System.out.println("La liste est vide");
       } 
       else if(succ.next==null&&pred==null) {
+        // Cas un seul noeud
         succ = null;
+        list.last=null;
+        list.first=null;
         list.size--;
       }
       else if(succ.next==null&&pred!=null) {
+        // Traite le cas : Avant dernier mais pas seul
         succ = null;
         pred.next = null;
+        list.last=pred;
         list.size--;
       }
       else if (this.isFirst()) {
@@ -78,6 +81,7 @@ public class ListItr {
         System.out.println("Impossible, il s'agit du dernier élément");
       } 
       else{
+        // Cas milieu
         succ = succ.next;
         pred.next = succ;
         succ.prev=pred;

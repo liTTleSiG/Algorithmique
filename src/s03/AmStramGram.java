@@ -1,7 +1,7 @@
 package s03;
 public class AmStramGram {
   public static void main(String[] args) {
-    int n=4, k=2;
+    int n=7, k=5;
     if (args.length == 2) {
       n = Integer.parseInt(args[0]);
       k = Integer.parseInt(args[1]);
@@ -30,7 +30,7 @@ public class AmStramGram {
     while(l.isEmpty()==false)
     {
       int i=k;
-      while(i>0)
+      while(i>1)
       {
         li.goToNext();
         if(li.isLast())
@@ -40,7 +40,12 @@ public class AmStramGram {
         i--;
       }
       li.removeAfter();
-      saveValue=li.consultAfter();
+      if(li.isLast())
+      {
+        li.goToFirst();
+      }
+      if (li.succ!=null)
+        saveValue=li.consultAfter();
     }
     return saveValue; 
   }
