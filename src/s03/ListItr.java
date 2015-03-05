@@ -62,15 +62,21 @@ public class ListItr {
         succ.prev = null;
         list.first = succ;
         list.size--;
-      }
-      else if (this.isLast()) {
-        // Supprime le dernier élément
+      } else if (this.isLast()) {
+        // Si il n'y a pas de list node après
         System.out.println("Impossible, il s'agit du dernier élément");
-      } else {
+      } else if (succ.next == null) {
+        // Supprime le dernier élément
         succ = succ.next;
         pred.next = succ;
         list.size--;
-      }      
+      } else {
+        // Cas du milieu
+        succ = succ.next;
+        pred.next = succ;
+        succ.prev = pred;
+        list.size--;
+      }
     }
   }
 
