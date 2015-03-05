@@ -20,7 +20,7 @@ public class AmStramGram {
   public static int winnerAmStramGram(int n, int k) {
     List     l = new List();
     ListItr li = new ListItr(l);
-    for(int i=1;i<=k;i++)
+    for(int i=1;i<=n;i++)
     {
       li.insertAfter(i);
     }
