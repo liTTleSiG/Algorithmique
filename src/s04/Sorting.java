@@ -38,7 +38,7 @@ public class Sorting {
     int k = 4;
     while (k >= 1) {
       for (l = 0; l < k; l++) {
-        for (i = l; i < a.length; i += k) {
+      /*  for (i = l; i < a.length; i += k) {
           for (j = i, min = a[j], v = j; j < a.length; j += k) {
             if (min > a[j]) {
               min = a[j];
@@ -47,6 +47,15 @@ public class Sorting {
           }
           a[v] = a[i];
           a[i] = min;
+        }*/
+        for (i = l; i < a.length; i+=k) {
+          v = a[i];          
+          j = i;
+          while (j > 0 && a[j - 1] > v) {
+            a[j] = a[j - 1];   
+            j--;
+          }
+          a[j] = v;          
         }
       }
       k = k / 2;

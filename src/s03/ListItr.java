@@ -2,7 +2,7 @@ package s03;
 
 public class ListItr {
   List list;
-  ListNode pred, succ;
+  public ListNode pred, succ;
 
   // ----------------------------------------------------------
   public ListItr(List anyList) {
@@ -13,7 +13,7 @@ public class ListItr {
 
   // ----------------------------------------------------------
   public void insertAfter(int e) {
-    if (this.list.numItr < 2) {
+    if (true) {
       ListNode aux = new ListNode(e, pred, succ);
       if (list.isEmpty()) {
         // List vide
@@ -50,7 +50,7 @@ public class ListItr {
   }
 
   public void removeAfter() {
-    if (this.list.numItr < 2) {
+    if (true) {
       if (list.isEmpty()) {
         // Liste vide
         System.out.println("La liste est vide");
