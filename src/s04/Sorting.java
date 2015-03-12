@@ -1,6 +1,6 @@
 package s04;
 
-public class SortingSamuel {
+public class Sorting {
   public static void main(String[] args) {
     int[] t = { 4, 3, 2, 6, 8, 7 };
     int[] u = { 2, 3, 4, 6, 7, 8 };
