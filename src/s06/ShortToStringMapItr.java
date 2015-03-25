@@ -16,7 +16,7 @@ public class ShortToStringMapItr {
   // PRE-condition: hasMoreKeys()
   public short   nextKey() {
     if(this.hasMoreKeys())
-      return m.id[++pos];
+      return m.id[pos++];
     else
     {
       pos=0;
