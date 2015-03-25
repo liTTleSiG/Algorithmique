@@ -6,39 +6,26 @@ public class ShortToStringMap {
   String[]                    content = new String[50];
   private ShortToStringMapItr iterateur;
 
-  // TODO - A COMPLETER...
-<<<<<<< HEAD
-  //------------------------------
-  //  Private methods
-  //------------------------------
-  private int locateKey(int i)
-  {
-    int j=0;
-    while(j<size-1)
-    {
-      if (id[j]==i)
+  // ------------------------------
+  // Private methods
+  // ------------------------------
+  private int locateKey(int i) {
+    int j = 0;
+    while (j < size - 1) {
+      if (id[j] == i)
         return j;
       j++;
     }
     return -1;
   }
-  
-  private void arrayIsFull(){
-    short[] newId= new short[2*id.length];
-    String[] newContent= new String[2*content.length];
-    for (int i=0;i<id.length;i++)
-    {
-      newId[i]=id[i];
-      newContent[i]=content[i];
-    }
-=======
-  // ------------------------------
-  // Private methods
-  // ------------------------------
-  private boolean locateKey(int i) {
 
-    return true;
->>>>>>> origin/master
+  private void arrayIsFull() {
+    short[] newId = new short[2 * id.length];
+    String[] newContent = new String[2 * content.length];
+    for (int i = 0; i < id.length; i++) {
+      newId[i] = id[i];
+      newContent[i] = content[i];
+    }
   }
 
   // Could be useful, for instance :
@@ -57,7 +44,12 @@ public class ShortToStringMap {
   // ------------------------------------------------------------
   // adds an entry in the map, or updates the image
   public void put(short key, String img) {
-    // TODO - A COMPLETER...
+    if (this.containsKey(key))                  //update la valeur si elle existe déjà
+      content[this.locateKey(key)] = img;
+    if (!this.iterateur.hasMoreKeys())          //si notre ensemble est plein on appelle arrayIsFull()
+      this.arrayIsFull();
+    id[size + 1] = key;
+    content[size + 1] = img;
   }
 
   // ------------------------------------------------------------
@@ -66,7 +58,7 @@ public class ShortToStringMap {
     if (!containsKey(key))
       return null;
     else
-      return " "; // a completer
+      return content[this.locateKey(key)]; // a completer
 
   }
 
@@ -77,7 +69,7 @@ public class ShortToStringMap {
 
   // ------------------------------------------------------------
   public boolean containsKey(short k) {
-    for (short i = 0; i < size; i++){
+    for (short i = 0; i < size; i++) {
       if (id[i] == k)
         return true;
     }
