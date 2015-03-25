@@ -7,10 +7,26 @@ public class ShortToStringMap {
   //------------------------------
   //  Private methods
   //------------------------------
-  private boolean locateKey(int i)
+  private int locateKey(int i)
   {
-    
-    return true;
+    int j=0;
+    while(j<size-1)
+    {
+      if (id[j]==i)
+        return j;
+      j++;
+    }
+    return -1;
+  }
+  
+  private void arrayIsFull(){
+    short[] newId= new short[2*id.length];
+    String[] newContent= new String[2*content.length];
+    for (int i=0;i<id.length;i++)
+    {
+      newId[i]=id[i];
+      newContent[i]=content[i];
+    }
   }
   // Could be useful, for instance :
   // - one method to detect and handle the "array is full" situation
