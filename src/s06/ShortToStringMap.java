@@ -5,18 +5,7 @@ public class ShortToStringMap {
   private short[]                     id      = new short[50];
   private String[]                    content = new String[50];
   private ShortToStringMapItr iterateur;
-
-<<<<<<< HEAD
-  //------------------------------
-  //  Private methods
-  //------------------------------
-  private int locateKey(int i)
-  {
-    int j=0;
-    while(j<size-1)
-    {
-      if (id[j]==i)
-=======
+ 
   // ------------------------------
   // Private methods
   // ------------------------------
@@ -24,22 +13,11 @@ public class ShortToStringMap {
     int j = 0;
     while (j < size - 1) {
       if (id[j] == i)
->>>>>>> origin/master
         return j;
       j++;
     }
     return -1;
   }
-<<<<<<< HEAD
-  
-  private void arrayIsFull(){
-    short[] newId= new short[2*id.length];
-    String[] newContent= new String[2*content.length];
-    for (int i=0;i<id.length;i++)
-    {
-      newId[i]=id[i];
-      newContent[i]=content[i];
-=======
 
   private void arrayIsFull() {
     short[] newId = new short[2 * id.length];
@@ -47,7 +25,6 @@ public class ShortToStringMap {
     for (int i = 0; i < id.length; i++) {
       newId[i] = id[i];
       newContent[i] = content[i];
->>>>>>> origin/master
     }
   }
   // Could be useful, for instance :
@@ -80,7 +57,7 @@ public class ShortToStringMap {
     if (!containsKey(key))
       return null;
     else
-      return content[this.locateKey(key)]; // a completer
+      return content[this.locateKey(key)];
 
   }
 
@@ -91,15 +68,13 @@ public class ShortToStringMap {
 
   // ------------------------------------------------------------
   public boolean containsKey(short k) {
-<<<<<<< HEAD
     if (locateKey(k)>=0)
       return true;
-=======
     for (short i = 0; i < size; i++) {
       if (id[i] == k)
         return true;
     }
->>>>>>> origin/master
+
     return false;
   }
 
