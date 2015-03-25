@@ -2,12 +2,10 @@ package s06;
 
 public class ShortToStringMap {
   private int                 size;
-  short[]                     id      = new short[50];
-  String[]                    content = new String[50];
+  private short[]                     id      = new short[50];
+  private String[]                    content = new String[50];
   private ShortToStringMapItr iterateur;
 
-  // TODO - A COMPLETER...
-<<<<<<< HEAD
   //------------------------------
   //  Private methods
   //------------------------------
@@ -31,16 +29,7 @@ public class ShortToStringMap {
       newId[i]=id[i];
       newContent[i]=content[i];
     }
-=======
-  // ------------------------------
-  // Private methods
-  // ------------------------------
-  private boolean locateKey(int i) {
-
-    return true;
->>>>>>> origin/master
   }
-
   // Could be useful, for instance :
   // - one method to detect and handle the "array is full" situation
   // - one method to locate a key in the array
@@ -72,15 +61,13 @@ public class ShortToStringMap {
 
   // ------------------------------------------------------------
   public void remove(short e) {
-    // TODO - A COMPLETER...
+    int toRemplace=locateKey(e);
   }
 
   // ------------------------------------------------------------
   public boolean containsKey(short k) {
-    for (short i = 0; i < size; i++){
-      if (id[i] == k)
-        return true;
-    }
+    if (locateKey(k)>=0)
+      return true;
     return false;
   }
 
