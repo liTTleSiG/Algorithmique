@@ -1,11 +1,17 @@
 package s06;
 public class ShortToStringMap {
   private int size;
+  short[] id=new short[50];
+  String[] content=new String[50];
   // TODO - A COMPLETER...
   //------------------------------
   //  Private methods
   //------------------------------
- 
+  private boolean locateKey(int i)
+  {
+    
+    return true;
+  }
   // Could be useful, for instance :
   // - one method to detect and handle the "array is full" situation
   // - one method to locate a key in the array 

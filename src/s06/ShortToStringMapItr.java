@@ -1,17 +1,26 @@
 package s06;
 public class ShortToStringMapItr {
-  // TODO - A COMPLETER...
+  private int pos=0;
+  private ShortToStringMap m;
   // ----------------------------------------
  public ShortToStringMapItr (ShortToStringMap m) {
-    // TODO - A COMPLETER...
+   this.m=m;
   }
  // ----------------------------------------
   public boolean hasMoreKeys() {
-    return false; // TODO - A COMPLETER...
+    if (m.size()-1==pos)
+      return false;
+    return true; 
   }
   // ----------------------------------------
   // PRE-condition: hasMoreKeys()
   public short   nextKey() {
-    return 0; // TODO - A COMPLETER...
+    if(this.hasMoreKeys())
+      return m.id[++pos];
+    else
+    {
+      pos=0;
+      return m.id[pos];
+    }
   }
 }
