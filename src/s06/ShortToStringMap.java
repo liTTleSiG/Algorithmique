@@ -3,6 +3,7 @@ public class ShortToStringMap {
   private int size;
   short[] id=new short[50];
   String[] content=new String[50];
+  private ShortToStringMapItr iterateur;
   // TODO - A COMPLETER...
   //------------------------------
   //  Private methods
@@ -22,7 +23,7 @@ public class ShortToStringMap {
   //------------------------------
   // ------------------------------------------------------------
   public ShortToStringMap () {
-    // TODO - A COMPLETER...
+    iterateur= new ShortToStringMapItr(this);
   }
   // ------------------------------------------------------------
   // adds an entry in the map, or updates the image
@@ -32,7 +33,11 @@ public class ShortToStringMap {
   // ------------------------------------------------------------
   // returns null if !containsKey(key)
   public String  get     (short key) {
-    return null; // TODO - A COMPLETER...
+    if (!containsKey(key))
+    return null;
+    else
+      return " ";
+      
   }
   // ------------------------------------------------------------
   public void    remove  (short e) { 
