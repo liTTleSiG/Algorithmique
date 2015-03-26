@@ -2,10 +2,10 @@ package s06;
 
 public class ShortToStringMap {
   private int                 size;
-  private short[]                     id      = new short[50];
-  private String[]                    content = new String[50];
+  private short[]             id      = new short[50];
+  private String[]            content = new String[50];
   private ShortToStringMapItr iterateur;
- 
+
   // ------------------------------
   // Private methods
   // ------------------------------
@@ -27,6 +27,7 @@ public class ShortToStringMap {
       newContent[i] = content[i];
     }
   }
+
   // Could be useful, for instance :
   // - one method to detect and handle the "array is full" situation
   // - one method to locate a key in the array
@@ -43,9 +44,10 @@ public class ShortToStringMap {
   // ------------------------------------------------------------
   // adds an entry in the map, or updates the image
   public void put(short key, String img) {
-    if (this.containsKey(key))                  //update la valeur si elle existe déjà
+    if (this.containsKey(key))                  // update la valeur si elle existe déjà
       content[this.locateKey(key)] = img;
-    if (!this.iterateur.hasMoreKeys())          //si notre ensemble est plein on appelle arrayIsFull()
+    if (!this.iterateur.hasMoreKeys())          // si notre ensemble est plein on appelle
+                                       // arrayIsFull()
       this.arrayIsFull();
     id[size + 1] = key;
     content[size + 1] = img;
@@ -63,12 +65,12 @@ public class ShortToStringMap {
 
   // ------------------------------------------------------------
   public void remove(short e) {
-    int toRemplace=locateKey(e);
+    int toRemplace = locateKey(e);
   }
 
   // ------------------------------------------------------------
   public boolean containsKey(short k) {
-    if (locateKey(k)>=0)
+    if (locateKey(k) >= 0)
       return true;
     for (short i = 0; i < size; i++) {
       if (id[i] == k)
@@ -105,6 +107,12 @@ public class ShortToStringMap {
   // a.toString() returns all elements in
   // a string like: {3:"abc",9:"xy",-5:"jk"}
   public String toString() {
-    return null;
+    String result = null;
+    for (int i = 0; i < id.length; i++){
+      result += String.valueOf(id[i]);
+      result+=this.get(id [i]);
+      result+=", ";
+    }
+    return "{" + result + "}";
   }
 }
