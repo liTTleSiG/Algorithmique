@@ -1,5 +1,7 @@
 package s06;
 
+import java.util.Random;
+
 public class ShortToStringMap {
   private int                 size;
   private short[]             id      = new short[50];
@@ -9,9 +11,12 @@ public class ShortToStringMap {
   // ------------------------------
   // Private methods
   // ------------------------------
-  private int locateKey(int i) {
-    int j = 0;
-    while (j < size - 1) {
+  // ------------------------------
+  // Private methods
+  // ------------------------------
+  private short locateKey(short i) {
+    short j = 0;
+    while (j < size) {
       if (id[j] == i)
         return j;
       j++;
@@ -20,11 +25,15 @@ public class ShortToStringMap {
   }
 
   private void arrayIsFull() {
-    short[] newId = new short[2 * id.length];
-    String[] newContent = new String[2 * content.length];
-    for (int i = 0; i < id.length; i++) {
-      newId[i] = id[i];
-      newContent[i] = content[i];
+    if (size == id.length) {
+      short[] newId = new short[2 * id.length];
+      String[] newContent = new String[2 * content.length];
+      for (int i = 0; i < id.length; i++) {
+        newId[i] = id[i];
+        newContent[i] = content[i];
+      }
+      id = newId;
+      content = newContent;
     }
   }
 
@@ -44,13 +53,14 @@ public class ShortToStringMap {
   // ------------------------------------------------------------
   // adds an entry in the map, or updates the image
   public void put(short key, String img) {
+    arrayIsFull();
     if (this.containsKey(key))                  // update la valeur si elle existe déjà
       content[this.locateKey(key)] = img;
-    if (!this.iterateur.hasMoreKeys())          // si notre ensemble est plein on appelle
-                                       // arrayIsFull()
-      this.arrayIsFull();
-    id[size + 1] = key;
-    content[size + 1] = img;
+    else {
+      id[size] = key;
+      content[size] = img;
+      size++;
+    }
   }
 
   // ------------------------------------------------------------
@@ -65,18 +75,18 @@ public class ShortToStringMap {
 
   // ------------------------------------------------------------
   public void remove(short e) {
-    int toRemplace = locateKey(e);
+    if (this.containsKey(e)) {
+      short pos = this.locateKey(e);
+      id[pos] = id[size - 1];
+      content[pos] = content[size - 1];
+      size--;
+    }
   }
 
   // ------------------------------------------------------------
   public boolean containsKey(short k) {
     if (locateKey(k) >= 0)
       return true;
-    for (short i = 0; i < size; i++) {
-      if (id[i] == k)
-        return true;
-    }
-
     return false;
   }
 
@@ -93,26 +103,41 @@ public class ShortToStringMap {
   // a.union(b) : a becomes "a union b"
   // images are those in b whenever possible
   public void union(ShortToStringMap m) {
-    // TODO - A COMPLETER...
+    for (int i = 0; i < m.size; i++) {
+      this.put(m.id[i], m.content[i]);
+    }
   }
 
   // ------------------------------------------------------------
   // a.intersection(b) : "a becomes a intersection b"
   // images are those in b
   public void intersection(ShortToStringMap s) {
-    // TODO - A COMPLETER...
+    ShortToStringMap inter = new ShortToStringMap();
+    for (int i = 0; i < this.size; i++) {
+      int pos = s.locateKey(id[i]);
+      if (pos >= 0) {
+        inter.put(id[i], s.content[pos]);
+      }
+    }
+    id = inter.id;
+    content = inter.content;
+    size = inter.size;
   }
 
   // ------------------------------------------------------------
   // a.toString() returns all elements in
   // a string like: {3:"abc",9:"xy",-5:"jk"}
   public String toString() {
-    String result = null;
-    for (int i = 0; i < id.length; i++){
-      result += String.valueOf(id[i]);
-      result+=this.get(id [i]);
-      result+=", ";
+    String tab = "{";
+    int i = 0;
+    while (i < size) {
+      tab += id[i] + ":\"" + content[i] + "\",";
+      i++;
     }
-    return "{" + result + "}";
+    return tab + "}";
+  }
+
+  short[] getId() {
+    return id;
   }
 }

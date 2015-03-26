@@ -8,13 +8,15 @@ public class ShortToStringMapItr {
     this.pos = pos;
   }
   private ShortToStringMap m;
+  private short[] id;
   // ----------------------------------------
  public ShortToStringMapItr (ShortToStringMap m) {
    this.m=m;
+   this.id=m.getId();
   }
  // ----------------------------------------
   public boolean hasMoreKeys() {
-    if (m.size()-1==pos)
+    if (m.size()==pos)
       return false;
     return true; 
   }
@@ -22,11 +24,11 @@ public class ShortToStringMapItr {
   // PRE-condition: hasMoreKeys()
   public short   nextKey() {
     if(this.hasMoreKeys())
-      return m.get(pos++);
+      return this.id[pos++];
     else
     {
       pos=0;
-      return m.id[pos];
+      return this.id[pos];
     }
   }
   
