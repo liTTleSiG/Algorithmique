@@ -1,6 +1,12 @@
 package s06;
 public class ShortToStringMapItr {
   private short pos=0;
+  public short getPos() {
+    return pos;
+  }
+  public void setPos(short pos) {
+    this.pos = pos;
+  }
   private ShortToStringMap m;
   // ----------------------------------------
  public ShortToStringMapItr (ShortToStringMap m) {
@@ -23,4 +29,5 @@ public class ShortToStringMapItr {
       return m.id[pos];
     }
   }
+  
 }
